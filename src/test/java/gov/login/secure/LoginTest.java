@@ -33,4 +33,20 @@ public class LoginTest {
         WebElement buttonSignInWebElement = driver.findElement(buttonSignInBy);
         buttonSignInWebElement.click();
     }
+
+    @Test
+    public void test3() {
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://secure.login.gov/");
+
+        String inputPasswordXpath = "/html/body/main/div/form/lg-password-toggle/lg-validated-field/div/input";
+        By inputPasswordBy = By.xpath(inputPasswordXpath);
+        WebElement inputPasswordWebElement = driver.findElement(inputPasswordBy);
+        inputPasswordWebElement.sendKeys("1q2w#E4r");
+
+        String buttonSignInXpath = "/html/body/main/div/form/lg-submit-button/button";
+        By buttonSignInBy = By.xpath(buttonSignInXpath);
+        WebElement buttonSignInWebElement = driver.findElement(buttonSignInBy);
+        buttonSignInWebElement.click();
+    }
 }
