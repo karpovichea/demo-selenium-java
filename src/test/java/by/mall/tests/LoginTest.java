@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class LoginTest {
-    private static final String PHONE_NUMBER = "+375293334455";
+    private static final String PHONE_NUMBER = "293334455";
     private static final String PASSWORD = "123456";
 
     @Test
@@ -33,5 +33,17 @@ public class LoginTest {
         loginPage.clickSignInButton();
 
         Assertions.assertEquals(LoginMessage.EMPTY_PHONE_NUMBER_FIELD, loginPage.getWrongCredentialsErrorMessage(), "Неверный текст ошибки валидации для пустого номера телефона");
+    }
+
+    @Test
+    @DisplayName("Тест: пустой пароль")
+    public void testSignInWithEmptyPassword() {
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://emall.by/login/password");
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.enterLogin(PHONE_NUMBER);
+        loginPage.clickSignInButton();
+
+        Assertions.assertEquals(LoginMessage.EMPTY_PASSWORD_FIELD, loginPage.getWrongCredentialsErrorMessage(), "Неверный текст ошибки валидации для пустого пароля");
     }
 }
