@@ -17,7 +17,7 @@ public class LoginPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public void enterLogin(String login) {
+    public void enterPhoneNumber(String login) {
         WebElement loginField = driver.findElement(By.xpath(LoginXpath.PHONE_NUMBER_FIELD));
         loginField.sendKeys(login);
     }
