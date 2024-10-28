@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.sql.SQLOutput;
 import java.util.concurrent.TimeUnit;
 
 public class LoginTest {
