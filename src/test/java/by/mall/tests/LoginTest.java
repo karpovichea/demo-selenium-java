@@ -41,7 +41,7 @@ public class LoginTest {
         WebDriver driver = new ChromeDriver();
         driver.get("https://emall.by/login/password");
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.enterLogin(PHONE_NUMBER);
+        loginPage.enterPhoneNumber(PHONE_NUMBER);
         loginPage.clickSignInButton();
 
         Assertions.assertEquals(LoginMessage.EMPTY_PASSWORD_FIELD, loginPage.getWrongCredentialsErrorMessage(), "Неверный текст ошибки валидации для пустого пароля");
@@ -53,7 +53,7 @@ public class LoginTest {
         WebDriver driver = new ChromeDriver();
         driver.get("https://emall.by/login/password");
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.enterLogin(PHONE_NUMBER);
+        loginPage.enterPhoneNumber(PHONE_NUMBER);
         loginPage.enterPassword(PASSWORD);
         loginPage.clickSignInButton();
 
