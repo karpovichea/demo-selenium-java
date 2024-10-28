@@ -46,4 +46,17 @@ public class LoginTest {
 
         Assertions.assertEquals(LoginMessage.EMPTY_PASSWORD_FIELD, loginPage.getWrongCredentialsErrorMessage(), "Неверный текст ошибки валидации для пустого пароля");
     }
+
+    @Test
+    @DisplayName("Тест: неверные учетные данные")
+    public void testSignInWithWrongCredentials() {
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://emall.by/login/password");
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.enterLogin(PHONE_NUMBER);
+        loginPage.enterPassword(PASSWORD);
+        loginPage.clickSignInButton();
+
+        Assertions.assertEquals(LoginMessage.WRONG_CREDENTIALS, loginPage.getWrongCredentialsErrorMessage(), "Неверный текст ошибки при невалидных учетных данных");
+    }
 }
