@@ -1,4 +1,4 @@
-package by.mall;
+package by.mall.pages;
 
 public class LoginXpath {
     public static final String PHONE_NUMBER_FIELD = "/html/body/div[1]/div/div/div[1]/form/div[1]/input";
