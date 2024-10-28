@@ -13,12 +13,12 @@ public class LoginPage {
 
     public void enterLogin(String login) {
         WebElement loginField = driver.findElement(By.xpath(LoginXpath.LOGIN_FIELD));
-        loginField.sendKeys("katty@gmail.com");
+        loginField.sendKeys(login);
     }
 
     public void enterPassword(String password) {
         WebElement passwordField = driver.findElement(By.xpath(LoginXpath.PASSWORD_FIELD));
-        passwordField.sendKeys("123456");
+        passwordField.sendKeys(password);
     }
 
     public void clickSignInButton() {
