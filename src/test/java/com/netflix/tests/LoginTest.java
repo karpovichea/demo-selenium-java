@@ -3,6 +3,7 @@ package com.netflix.tests;
 import com.netflix.pages.LoginMessage;
 import com.netflix.pages.LoginPage;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,6 +13,7 @@ public class LoginTest {
     private static final String PASSWORD = "123456";
 
     @Test
+    @DisplayName("Тест: пустой логин и пароль")
     public void testSignInWithEmptyLoginAndPassword() {
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.netflix.com/login");
@@ -23,6 +25,7 @@ public class LoginTest {
     }
 
     @Test
+    @DisplayName("Тест: пустой логин")
     public void testSignInWithEmptyLogin() {
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.netflix.com/login");
@@ -34,6 +37,7 @@ public class LoginTest {
     }
 
     @Test
+    @DisplayName("Тест: пустой пароль")
     public void testSignInWithEmptyPassword() {
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.netflix.com/login");
@@ -45,6 +49,7 @@ public class LoginTest {
     }
 
     @Test
+    @DisplayName("Тест: неверные учетные данные")
     public void testSignInWithWrongCredentials() {
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.netflix.com/login");
@@ -53,6 +58,6 @@ public class LoginTest {
         loginPage.enterPassword(PASSWORD);
         loginPage.clickSignInButton();
 
-        Assertions.assertEquals(LoginMessage.WRONG_CREDENTIALS + LOGIN, loginPage.getWrongCredentialsErrorMessage(), "Неверный текст ошибки при невалидных credentials");
+        Assertions.assertEquals(LoginMessage.WRONG_CREDENTIALS + LOGIN, loginPage.getWrongCredentialsErrorMessage(), "Неверный текст ошибки при невалидных учетных данных");
     }
 }
