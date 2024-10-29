@@ -2,22 +2,26 @@ package by.mall.tests;
 
 import by.mall.pages.LoginMessage;
 import by.mall.pages.LoginPage;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class LoginTest {
     private static final String PHONE_NUMBER = "293334455";
     private static final String PASSWORD = "123456";
+    private WebDriver driver;
+    private LoginPage loginPage;
+
+    @BeforeEach
+    void setUp() {
+        driver = new ChromeDriver();
+        driver.get("https://emall.by/login/password");
+        loginPage = new LoginPage(driver);
+    }
 
     @Test
     @DisplayName("Тест: пустой номер телефона и пароль")
     public void testSignInWithEmptyPhoneNumberAndPassword() {
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://emall.by/login/password");
-        LoginPage loginPage = new LoginPage(driver);
         loginPage.clickSignInButton();
 
         Assertions.assertEquals(LoginMessage.EMPTY_PHONE_NUMBER_AND_PASSWORD_FIELDS, loginPage.getWrongCredentialsErrorMessage(), "Неверный текст ошибки валидации для пустого номера телефона и пароля");
@@ -26,9 +30,6 @@ public class LoginTest {
     @Test
     @DisplayName("Тест: пустой номер телефона")
     public void testSignInWithEmptyPhoneNumber() {
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://emall.by/login/password");
-        LoginPage loginPage = new LoginPage(driver);
         loginPage.enterPassword(PASSWORD);
         loginPage.clickSignInButton();
 
@@ -38,9 +39,6 @@ public class LoginTest {
     @Test
     @DisplayName("Тест: пустой пароль")
     public void testSignInWithEmptyPassword() {
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://emall.by/login/password");
-        LoginPage loginPage = new LoginPage(driver);
         loginPage.enterPhoneNumber(PHONE_NUMBER);
         loginPage.clickSignInButton();
 
@@ -50,13 +48,15 @@ public class LoginTest {
     @Test
     @DisplayName("Тест: неверные учетные данные")
     public void testSignInWithWrongCredentials() {
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://emall.by/login/password");
-        LoginPage loginPage = new LoginPage(driver);
         loginPage.enterPhoneNumber(PHONE_NUMBER);
         loginPage.enterPassword(PASSWORD);
         loginPage.clickSignInButton();
 
         Assertions.assertEquals(LoginMessage.WRONG_CREDENTIALS, loginPage.getWrongCredentialsErrorMessage(), "Неверный текст ошибки при невалидных учетных данных");
+    }
+
+    @AfterEach
+    void tearDown() {
+        driver.quit();
     }
 }
